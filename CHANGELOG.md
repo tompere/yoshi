@@ -1,5 +1,227 @@
 # Changelog
 
+## 4.21.9 (2019-11-24)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-legacy`, `yoshi`
+  - [#1717](https://github.com/wix/yoshi/pull/1717) Upgrade stylable to `1.3.1` ([fixes jest cache invalidation for `.st.css` files](https://github.com/wix/stylable/pull/887)) ([@AviVahl](https://github.com/AviVahl))
+
+## 4.21.8 (2019-11-24)
+
+#### :house: Internal
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#1714](https://github.com/wix/yoshi/pull/1714) Build changes to support custom `editor-elements` build ([@ronami](https://github.com/ronami))
+- `yoshi-helpers`
+  - [#1715](https://github.com/wix/yoshi/pull/1715) [Temporary hack] Always transpile `editor-elements` through `ts-loader` ([@ronami](https://github.com/ronami))
+- `yoshi-config`, `yoshi-flow-app`, `yoshi-flow-editor`, `yoshi-flow-legacy`, `yoshi-flow-monorepo`, `yoshi-helpers`, `yoshi-server-tools`
+  - [#1705](https://github.com/wix/yoshi/pull/1705) Bump some-what major dev dependencies and refactor `yoshi-config` ([@ronami](https://github.com/ronami))
+- Other
+  - [#1702](https://github.com/wix/yoshi/pull/1702) Show package name when publish fails because of it ([@ranyitz](https://github.com/ranyitz))
+
+## 4.21.7 (2019-11-20)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`
+  - [#1699](https://github.com/wix/yoshi/pull/1699) Wait for server process to listen to a port before opening the browser ([@ronami](https://github.com/ronami))
+
+## 4.21.6 (2019-11-20)
+
+#### :house: Internal
+
+- `create-yoshi-app`, `yoshi-flow-editor-runtime`, `yoshi-flow-editor`, `yoshi-helpers`
+  - [#1612](https://github.com/wix/yoshi/pull/1612) Yoshi flow editor ([@ranyitz](https://github.com/ranyitz))
+- `create-yoshi-app`
+  - [#1613](https://github.com/wix/yoshi/pull/1613) Yoshi BM Flow ([@amitdahan](https://github.com/amitdahan))
+
+## 4.21.5 (2019-11-20)
+
+#### :nail_care: Polish
+
+- `yoshi-common`, `yoshi-server`
+  - [#1700](https://github.com/wix/yoshi/pull/1700) Change manifest and ejs templates naming conventions ([@roymiloh](https://github.com/roymiloh))
+
+#### :memo: Documentation
+
+- [#1698](https://github.com/wix/yoshi/pull/1698) Remove `externalUnprocessedModules` option from docs ([@ranyitz](https://github.com/ranyitz))
+
+#### :house: Internal
+
+- [#1697](https://github.com/wix/yoshi/pull/1697) Add test scripts for the new templates to come ([@amitdahan](https://github.com/amitdahan))
+
+## 4.21.4 (2019-11-19)
+
+#### :rocket: New Feature
+
+- `create-yoshi-app`
+  - [#1688](https://github.com/wix/yoshi/pull/1688) Update Server template with Node Platform types ([@alexandervain](https://github.com/alexandervain))
+
+#### :house: Internal
+
+- `yoshi-flow-monorepo`
+  - [#1671](https://github.com/wix/yoshi/pull/1671) Improve publish script ([@ranyitz](https://github.com/ranyitz))
+- `create-yoshi-app`
+  - [#1685](https://github.com/wix/yoshi/pull/1685) Correctly link Yoshi's CLIs ([@amitdahan](https://github.com/amitdahan))
+
+## 4.21.3 (2019-11-18)
+
+#### :house: Internal
+
+- `yoshi-common`
+  - [#1693](https://github.com/wix/yoshi/pull/1693) Work-around for `thunderbolt-elements` ([@hadarge](https://github.com/hadarge))
+
+## 4.21.2 (2019-11-18)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`
+  - [#1691](https://github.com/wix/yoshi/pull/1691) Support transpiling TypeScript files with Carmi loader ([@yotambarzilay](https://github.com/yotambarzilay))
+
+## 4.21.1 (2019-11-18)
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-monorepo`
+  - [#1512](https://github.com/wix/yoshi/pull/1512) Don't publish from monorepo release command ([@netanelgilad](https://github.com/netanelgilad))
+
+## 4.21.0 (2019-11-17)
+
+#### :rocket: New Feature
+
+- `yoshi-common`, `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#1681](https://github.com/wix/yoshi/pull/1681) Create a `manifest.json` for local development ([@yanivefraim](https://github.com/yanivefraim))
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#1683](https://github.com/wix/yoshi/pull/1683) Pass through `experimentalBuildHtml` flag ([@roymiloh](https://github.com/roymiloh))
+
+## 4.20.10 (2019-11-17)
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-app`
+  - [#1680](https://github.com/wix/yoshi/pull/1680) Pass missing configurations to webpack config ([@ronami](https://github.com/ronami))
+
+## 4.20.9 (2019-11-15)
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#1676](https://github.com/wix/yoshi/pull/1676) Pass `tpaStyle` and `enhancedTpaStyle` config options to the webpack config ([@ranyitz](https://github.com/ranyitz))
+
+## 4.20.8 (2019-11-15)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`
+  - [#1679](https://github.com/wix/yoshi/pull/1679) Transpile TypeScript according to `--production` ([@ronami](https://github.com/ronami))
+
+## 4.20.7 (2019-11-15)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`
+  - [#1677](https://github.com/wix/yoshi/pull/1677) Transpile TypeScript to latest browsers only on local development ([@ronami](https://github.com/ronami))
+- `create-yoshi-app`
+  - [#1674](https://github.com/wix/yoshi/pull/1674) Server templates: fix `index-dev.js` ([@hugebdu](https://github.com/hugebdu))
+
+## 4.20.6 (2019-11-14)
+
+#### :bug: Bug Fix
+
+- `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#1670](https://github.com/wix/yoshi/pull/1670) Don't crash if `--verbose` is passed to app/monorepo ([@ronami](https://github.com/ronami))
+
+## 4.20.5 (2019-11-13)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#1669](https://github.com/wix/yoshi/pull/1669) Write manifest file to correct app directory in monorepos ([@ronami](https://github.com/ronami))
+- `yoshi-common`, `yoshi-flow-app`, `yoshi-flow-monorepo`, `yoshi-server-tools`
+  - [#1668](https://github.com/wix/yoshi/pull/1668) Move types to `devDependencies` ([@ranyitz](https://github.com/ranyitz))
+
+## 4.20.4 (2019-11-13)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-monorepo`
+  - [#1666](https://github.com/wix/yoshi/pull/1666) Whitelist external monorepo packages in node bundle ([@ronami](https://github.com/ronami))
+- `yoshi-flow-app`, `yoshi-flow-monorepo`
+  - [#1667](https://github.com/wix/yoshi/pull/1667) Fix `cssModules` config not having any effect ([@ronami](https://github.com/ronami))
+- `yoshi-flow-monorepo`
+
+  - [#1665](https://github.com/wix/yoshi/pull/1665) Take Dev Server/HMR configuration values per app over rootConfig ([@ronami](https://github.com/ronami))
+
+## 4.20.3 (2019-11-13)
+
+#### :bug: Bug Fix
+
+- `yoshi-common`, `yoshi-flow-legacy`, `yoshi`
+  - [#1664](https://github.com/wix/yoshi/pull/1664) Use latest `stylable@1` ([@AviVahl](https://github.com/AviVahl))
+
+## 4.20.2 (2019-11-13)
+
+#### :bug: Bug Fix
+
+- `yoshi`
+  - [#1663](https://github.com/wix/yoshi/pull/1663) Correct the path of yoshi's `jest.config.js` in `wallaby-jest` file ([@ranyitz](https://github.com/ranyitz))
+
+## 4.20.1 (2019-11-13)
+
+#### :bug: Bug Fix
+
+- `yoshi`
+  - Add support for monorepo flow
+
+## 4.20.0 (2019-11-13)
+
+#### :bug: Bug Fix
+
+- `create-yoshi-app`
+  - [#1544](https://github.com/wix/yoshi/pull/1544) Update i18n for OOI templates ([@bodia-uz](https://github.com/bodia-uz))
+
+#### :house: Internal
+
+- `create-yoshi-app`, `jest-yoshi-preset`, `yoshi-common`, `yoshi-config`, `yoshi-flow-app`, `yoshi-flow-legacy`, `yoshi-flow-monorepo`, `yoshi-helpers`, `yoshi-server-tools`, `yoshi-server`, `yoshi`
+  - [#1647](https://github.com/wix/yoshi/pull/1647) Prepare code-base for multiple flows and migrate most of it to TypeScript ([@ronami](https://github.com/ronami))
+
+## 4.19.0 (2019-12-06)
+
+#### :rocket: New Feature
+
+- `yoshi`
+  - [#1657](https://github.com/wix/yoshi/pull/1657) Support browser env var ([@roymiloh](https://github.com/roymiloh))
+  - [#1650](https://github.com/wix/yoshi/pull/1650) Support importing web-workers ([@roymiloh](https://github.com/roymiloh))
+
+#### :house: Internal
+
+- `yoshi-server-react`, `yoshi`
+  - [#1654](https://github.com/wix/yoshi/pull/1654) Prettier version update ([@deanshub](https://github.com/deanshub))
+
+## 4.18.0 (2019-11-06)
+
+#### :rocket: New Feature
+
+- `yoshi`
+  - [#1626](https://github.com/wix/yoshi/pull/1626) Fix `HtmlWebpackPlugin` to work inside monorepo ([@yanivefraim](https://github.com/yanivefraim))
+
+#### :bug: Bug Fix
+
+- `create-yoshi-app`
+  - [#1646](https://github.com/wix/yoshi/pull/1646) Update `wix-private.mock.js` ([@ranyitz](https://github.com/ranyitz))
+- `jest-yoshi-preset`
+  - [#1641](https://github.com/wix/yoshi/pull/1641) Page close error level ([@rokasmik](https://github.com/rokasmik))
+
+#### :house: Internal
+
+- `create-yoshi-app`
+  - [#1631](https://github.com/wix/yoshi/pull/1631) Improve symlinking strategy ([@ranyitz](https://github.com/ranyitz))
+  - [#1625](https://github.com/wix/yoshi/pull/1625) Remove TS workaround for `@types/prompts` ([@amitdahan](https://github.com/amitdahan))
+
 ## 4.17.3 (2019-10-23)
 
 #### :bug: Bug Fix

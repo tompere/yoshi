@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs-extra');
-const { ciEnv } = require('../../../../scripts/utils/constants');
+const { ciEnv, localEnv } = require('../../../../scripts/utils/constants');
 
 jest.setTimeout(60 * 1000);
 
@@ -19,23 +19,58 @@ async function replaceOriginalEntry(relativeFilePath) {
 }
 
 describe('manifest', () => {
-  afterEach(() => {
+  beforeAll(() => replaceOriginalEntry('src/cases/manifest.js'));
+
+  afterAll(() => {
     // reset state back to normal after every test
     fs.writeFileSync(originalFilePath, originalContent);
   });
 
-  it('generates manifest stat file', async () => {
-    await replaceOriginalEntry('src/cases/manifest.js');
+  describe('build', () => {
+    beforeAll(() => global.scripts.build(ciEnv));
 
-    await global.scripts.build(ciEnv);
+    it('generates manifest stat file for non optimized', async () => {
+      const statsFilePath = path.join(
+        process.env.TEST_DIRECTORY,
+        'dist/statics/manifest.json',
+      );
 
-    const statsFilePath = path.join(
-      process.env.TEST_DIRECTORY,
-      'dist/statics/manifest.1.0.0.json',
-    );
+      const json = JSON.parse(fs.readFileSync(statsFilePath, 'utf-8'));
 
-    const json = JSON.parse(fs.readFileSync(statsFilePath, 'utf-8'));
+      expect(json).toMatchSnapshot();
+    });
 
-    expect(json).toMatchSnapshot();
+    it('generates manifest stat file for optimized', async () => {
+      const statsFilePath = path.join(
+        process.env.TEST_DIRECTORY,
+        'dist/statics/manifest.min.json',
+      );
+
+      const json = JSON.parse(fs.readFileSync(statsFilePath, 'utf-8'));
+
+      expect(json).toMatchSnapshot();
+    });
+  });
+
+  describe('start', () => {
+    let startResult;
+    afterEach(async () => {
+      if (startResult) {
+        await startResult.done();
+      }
+    });
+
+    it('generates manifest stat file', async () => {
+      startResult = await global.scripts.start(localEnv);
+
+      const statsFilePath = path.join(
+        process.env.TEST_DIRECTORY,
+        'dist/statics/manifest.json',
+      );
+
+      const json = JSON.parse(fs.readFileSync(statsFilePath, 'utf-8'));
+
+      expect(json).toMatchSnapshot();
+    });
   });
 });

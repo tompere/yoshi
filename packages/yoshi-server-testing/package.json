@@ -1,6 +1,6 @@
 {
   "name": "yoshi-server-testing",
-  "version": "4.17.2",
+  "version": "4.21.9",
   "main": "build/index.js",
   "sideEffects": false,
   "keywords": [
@@ -10,7 +10,7 @@
   "author": "Ronen Amiel",
   "license": "ISC",
   "dependencies": {
-    "@types/lodash": "4.14.144",
+    "@types/lodash": "4.14.149",
     "lodash": "4.17.15"
   },
   "peerDependencies": {
@@ -18,7 +18,7 @@
     "yoshi-server-client": "^4.14.0"
   },
   "devDependencies": {
-    "yoshi-server": "4.17.2",
-    "yoshi-server-client": "4.17.2"
+    "yoshi-server": "4.21.9",
+    "yoshi-server-client": "4.21.9"
   }
 }

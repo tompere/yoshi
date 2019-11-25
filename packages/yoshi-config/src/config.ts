@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Entry, EntryFunc, ExternalsElement, Options } from 'webpack';
 import { PackageJson } from 'read-pkg';
 
@@ -101,6 +101,7 @@ export type Config = {
   transpileTests: boolean;
   jestConfig: unknown;
   externalUnprocessedModules: Array<string>;
+  externalizeRelativeLodash: boolean;
   petriSpecsConfig: PetriOptions;
   performanceBudget: Options.Performance | false;
   resolveAlias: { [key: string]: string };
