@@ -27,7 +27,7 @@ export const buildEditorPlatformEntries = () => {
       absolute: true,
     },
   );
-  const userInitApp = globby.sync('./src/components/initApp.(js|ts|tsx)', {
+  const userInitApp = globby.sync('./src/initApp.(js|ts|tsx)', {
     absolute: true,
   });
 
@@ -64,7 +64,7 @@ export const buildViewerScriptEntry = () => {
       absolute: true,
     },
   );
-  const userInitApp = globby.sync('./src/components/initApp.(js|ts|tsx)', {
+  const userInitApp = globby.sync('./src/initApp.(js|ts|tsx)', {
     absolute: true,
   });
 
