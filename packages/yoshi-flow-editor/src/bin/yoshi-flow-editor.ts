@@ -88,6 +88,7 @@ Promise.resolve().then(async () => {
   }
 
   const config = loadConfig();
+  config.servers.cdn.ssl = true;
 
   const runCommand = (await commands[command]()).default;
 
