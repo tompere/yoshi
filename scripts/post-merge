@@ -6,8 +6,22 @@
 
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 
+# Confirmation before installing
+confirm() {
+    # call with a prompt string or use a default
+    read -r -p "Some dependencies changed, should I run \`npm install\`? [y/N]" response
+    case "$response" in
+        [yY][eE][sS]|[yY])
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}
+
 check_run() {
-	echo "$changed_files" | grep --quiet "$1" && eval "$2"
+	echo "$changed_files" | grep --quiet "$1" && confirm && eval "$2"
 }
 
 # Example usage
