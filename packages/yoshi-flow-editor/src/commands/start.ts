@@ -30,18 +30,12 @@ const start: cliCommand = async function(argv, config) {
       '--https': Boolean,
       '--debug': Boolean,
       '--debug-brk': Boolean,
-
-      // Aliases
-      '--entry-point': '--server',
-      '-e': '--server',
-      '--ssl': '--https',
     },
     { argv },
   );
 
   const {
     '--help': help,
-    '--server': serverEntry = 'index.js',
     '--url': url,
     '--production': shouldRunAsProduction,
     '--https': shouldUseHttps = config.servers.cdn.ssl,
@@ -58,7 +52,6 @@ const start: cliCommand = async function(argv, config) {
 
       Options
         --help, -h      Displays this message
-        --server        The main file to start your server
         --url           Opens the browser with the supplied URL
         --production    Start using unminified production build
         --https         Serve the app bundle on https
@@ -105,7 +98,7 @@ const start: cliCommand = async function(argv, config) {
     publicPath: config.servers.cdn.url,
     https: shouldUseHttps,
     port: config.servers.cdn.port,
-    serverFilePath: serverEntry,
+    serverFilePath: 'node_modules/yoshi-flow-editor/build/server/server.js',
     enableClientHotUpdates: Boolean(config.hmr),
   });
 
