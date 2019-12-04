@@ -42,7 +42,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "post-merge": "scripts/post-merge"
+      "post-merge": "ts-node -T scripts/post-merge"
     }
   },
   "lint-staged": {
@@ -84,6 +84,7 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.3",
     "globby": "^9.0.0",
+    "has-yarn": "^2.1.0",
     "husky": "^1.0.0-rc.9",
     "jest": "^24.1.0",
     "jest-environment-puppeteer": "^3.4.0",
