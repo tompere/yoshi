@@ -1,10 +1,10 @@
 import path from 'path';
 import globby from 'globby';
-import componentWrapping from './componentWrapping';
-import editorAppWrapping from './editorAppWrapping';
-import settingsWrapping from './settingsWrapping';
-import viewerScriptWrapping from './viewerScriptWrapping';
-import wixPrivateMockWrapping from './wixPrivateMockWrapping';
+import componentWrapping from './wrappers/componentWrapping';
+import editorAppWrapping from './wrappers/editorAppWrapping';
+import settingsWrapping from './wrappers/settingsWrapping';
+import viewerScriptWrapping from './wrappers/viewerScriptWrapping';
+import wixPrivateMockWrapping from './wrappers/wixPrivateMockWrapping';
 
 const generatedWidgetEntriesPath = path.resolve(__dirname, '../tmp/components');
 

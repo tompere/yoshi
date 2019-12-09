@@ -1,6 +1,6 @@
 import path from 'path';
 import fs from 'fs-extra';
-import { Dictionary } from './types';
+import { Dictionary } from '../types';
 
 const editorAppWrapperPath =
   'yoshi-flow-editor-runtime/build/EditorAppWrapper.js';
