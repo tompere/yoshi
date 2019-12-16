@@ -35,14 +35,13 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import globby from 'globby';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import InterpolateHtmlPlugin from 'react-dev-utils/InterpolateHtmlPlugin';
-import buildUrl from 'build-url';
 import nodeExternals, { WhitelistOption } from 'webpack-node-externals';
 import RtlCssPlugin from 'rtlcss-webpack-plugin';
 import TpaStyleWebpackPlugin from 'tpa-style-webpack-plugin';
+import InlineChunkHtmlPlugin from './html-inline-plugin';
 import { localIdentName } from './utils/constants';
 import ExportDefaultPlugin from './export-default-plugin';
 import { calculatePublicPath } from './webpack-utils';
-import HtmlPolyfillPlugin from './html-polyfill-plugin';
 import ManifestPlugin from './manifest-webpack-plugin';
 
 const isProduction = checkIsProduction();
@@ -356,6 +355,8 @@ export function createBaseWebpackConfig({
         // Search in `yoshi-common`'s node_modules first
         path.join(__dirname, '../node_modules'),
 
+        path.join(__dirname, '../../../node_modules'),
+
         // Normal node module resolution
         // https://webpack.js.org/configuration/resolve/#resolvemodules
         'node_modules',
@@ -421,30 +422,21 @@ export function createBaseWebpackConfig({
                     .map(templatePath => {
                       const basename = path.basename(templatePath);
                       const filename = join(TEMPLATES_BUILD_DIR, basename);
+                      const customLoader = require.resolve(
+                        './lodash-template-loader',
+                      );
 
                       return new HtmlWebpackPlugin({
                         filename: isDev
                           ? filename
                           : prependNameWith(filename, 'min'),
-                        chunks: [basename.replace(/\.[0-9a-z]+$/i, '')],
-                        template: `html-loader!${templatePath}`,
+                        template: `${customLoader}!${templatePath}`,
                         minify: !isDev as false,
+                        inject: false,
                       });
                     }),
 
-                  new HtmlPolyfillPlugin(HtmlWebpackPlugin, [
-                    buildUrl(
-                      'https://static.parastorage.com/polyfill/v2/polyfill.min.js',
-                      {
-                        queryParams: {
-                          features: ['default', 'es6', 'es7', 'es2017'],
-                          flags: ['gated'],
-                          unknown: 'polyfill',
-                          rum: '0',
-                        },
-                      },
-                    ),
-                  ]),
+                  new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/css/]),
 
                   new InterpolateHtmlPlugin(HtmlWebpackPlugin, {
                     PUBLIC_PATH: publicPath,
