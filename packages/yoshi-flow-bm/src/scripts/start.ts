@@ -5,15 +5,16 @@ import chalk from 'chalk';
 import { TARGET_DIR, BUILD_DIR } from 'yoshi-config/paths';
 import DevEnvironment from 'yoshi-common/dev-environment';
 import openBrowser from 'yoshi-common/open-browser';
-import { cliCommand } from '../bin/yoshi-bm';
+import { CliCommand } from '../bin/yoshi-bm';
 import {
   createClientWebpackConfig,
   createServerWebpackConfig,
 } from '../webpack.config';
+import createFlowBMModel from '../createFlowBMModel';
 
 const join = (...dirs: Array<string>) => path.join(process.cwd(), ...dirs);
 
-const start: cliCommand = async function(argv, config) {
+const start: CliCommand = async function(argv, config) {
   const args = arg(
     {
       // Types
@@ -76,12 +77,14 @@ const start: cliCommand = async function(argv, config) {
     fs.emptyDir(join(TARGET_DIR)),
   ]);
 
-  const clientConfig = createClientWebpackConfig(config, {
+  const model = createFlowBMModel();
+
+  const clientConfig = createClientWebpackConfig(config, model, {
     isDev: true,
     isHot: config.hmr as boolean,
   });
 
-  const serverConfig = createServerWebpackConfig(config, {
+  const serverConfig = createServerWebpackConfig(config, model, {
     isDev: true,
     isHot: true,
   });

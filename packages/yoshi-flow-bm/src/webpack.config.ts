@@ -12,6 +12,7 @@ import {
 } from 'yoshi-helpers/queries';
 import renderModule from './renderModule';
 import bmExternalModules from './bmExternalModules';
+import { FlowBMModel } from './createFlowBMModel';
 
 const useTypeScript = isTypescriptProject();
 
@@ -33,6 +34,7 @@ const createDefaultOptions = (config: Config) => {
 
 export function createClientWebpackConfig(
   config: Config,
+  model: FlowBMModel,
   {
     isDev,
     isHot,
@@ -59,7 +61,7 @@ export function createClientWebpackConfig(
   });
 
   clientConfig.externals = bmExternalModules;
-  clientConfig.entry = { module: renderModule() };
+  clientConfig.entry = { module: renderModule(model) };
   clientConfig.resolve!.alias = config.resolveAlias;
 
   return clientConfig;
@@ -67,6 +69,7 @@ export function createClientWebpackConfig(
 
 export function createServerWebpackConfig(
   config: Config,
+  model: FlowBMModel,
   { isDev, isHot }: { isDev?: boolean; isHot?: boolean } = {},
 ): Configuration {
   const defaultOptions = createDefaultOptions(config);
