@@ -11,6 +11,7 @@
     "bfj": "7.0.1",
     "chalk": "3.0.0",
     "fs-extra": "8.1.0",
+    "globby": "10.0.1",
     "react-dev-utils": "9.1.0",
     "webpack": "4.41.2",
     "webpack-node-externals": "1.7.2",

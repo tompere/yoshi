@@ -1,4 +1,6 @@
 import path from 'path';
+import globby from 'globby';
+import { getProjectArtifactId } from 'yoshi-helpers/build/utils';
 
 export interface ComponentModel {
   componentId: string;
@@ -22,29 +24,46 @@ export interface FlowBMModel {
   moduleConfig: any;
 }
 
+const exts = '{js,jsx,ts,tsx}';
+const pagesPattern = `pages/**/*.${exts}`;
+const componentsPattern = `components/**/*.${exts}`;
+const methodsPattern = `methods/**/*.${exts}`;
+const moduleInitPattern = `moduleInit.${exts}`;
+const translationsPattern = 'translations';
+
 export default function createFlowBMModel(cwd = process.cwd()): FlowBMModel {
-  const moduleId = require(path.join(cwd, 'package.json'))
-    .name.split('/')
-    .pop();
+  const globFiles = (pattern: string) =>
+    globby.sync(pattern, { cwd, absolute: true, onlyFiles: true });
 
-  const localePath = path.join(cwd, 'translations');
-  const moduleInitPath = path.join(cwd, 'moduleInit');
+  const globDirs = (pattern: string) =>
+    globby.sync(pattern, {
+      cwd,
+      absolute: true,
+      onlyDirectories: true,
+      expandDirectories: false,
+    });
 
-  const pages = ['index'].map(filename => ({
-    componentId: `${moduleId}.pages.${filename}`,
-    componentPath: path.join(cwd, `pages/${filename}`),
-    route: '',
-  })); // ./src/pages/**/*.{ts,tsx}
+  const moduleId = getProjectArtifactId(cwd)!;
 
-  const components = ['LegacyTodoList'].map(filename => ({
-    componentId: `${moduleId}.components.${filename}`,
-    componentPath: path.join(cwd, `components/${filename}`),
-  })); // ./src/components/**/*.{ts,tsx}
+  const pages = globFiles(pagesPattern).map(pagePath => ({
+    componentId: `${moduleId}.pages.${path.parse(pagePath).name}`,
+    componentPath: pagePath,
+    route: '', // TODO: Deferred to the "render ERB" feature, unnecessary until then
+  }));
 
-  const methods = ['getTodos'].map(filename => ({
-    methodId: `${moduleId}.methods.${filename}`,
-    methodPath: path.join(cwd, `methods/${filename}`),
-  })); // ./src/methods/**/*.{ts,tsx}
+  const components = globFiles(componentsPattern).map(componentPath => ({
+    componentId: `${moduleId}.components.${path.parse(componentPath).name}`,
+    componentPath: componentPath,
+  }));
+
+  const methods = globFiles(methodsPattern).map(methodPath => ({
+    methodId: `${moduleId}.methods.${path.parse(methodPath).name}`,
+    methodPath: methodPath,
+  }));
+
+  const [moduleInitPath] = globFiles(moduleInitPattern);
+  console.log(globby.sync('translations', { cwd, absolute: true }));
+  const [localePath] = globDirs(translationsPattern);
 
   return {
     moduleId,
