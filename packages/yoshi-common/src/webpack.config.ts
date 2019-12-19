@@ -347,7 +347,7 @@ export function createBaseWebpackConfig({
     resolve: {
       modules: ['node_modules', join(SRC_DIR)],
       extensions: ['.mjs', '.js', '.jsx', '.ts', '.tsx', '.svelte', '.json'],
-      mainFields: ['svelte', 'browser', 'module', 'main'],
+      mainFields: ['svelte', ...(target === 'node' ? [] : ['browser']), 'module', 'main'],
     },
 
     resolveLoader: {
