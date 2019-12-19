@@ -1,5 +1,5 @@
 import path from 'path';
-import fs from 'fs';
+import fs from 'fs-extra';
 import { FlowBMModel } from './createFlowBMModel';
 
 const generateModuleCode = ({
@@ -50,11 +50,9 @@ createModule({
 });`;
 
 const renderModule = (model: FlowBMModel) => {
-  const tempPath = path.resolve(__dirname, '../tmp');
-  const filePath = path.join(tempPath, 'module.ts');
+  const filePath = path.resolve(__dirname, '../tmp/module.ts');
 
-  fs.mkdirSync(tempPath, { recursive: true });
-  fs.writeFileSync(filePath, generateModuleCode(model));
+  fs.outputFileSync(filePath, generateModuleCode(model));
 
   return filePath;
 };

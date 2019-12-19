@@ -22,6 +22,7 @@
     "yoshi-helpers": "4.23.5"
   },
   "devDependencies": {
+    "@types/fs-extra": "8.0.1",
     "@types/react-dev-utils": "9.0.1",
     "@types/webpack": "4.41.0",
     "@types/webpack-dev-server": "3.9.0",
