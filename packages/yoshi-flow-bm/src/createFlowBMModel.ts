@@ -62,7 +62,6 @@ export default function createFlowBMModel(cwd = process.cwd()): FlowBMModel {
   }));
 
   const [moduleInitPath] = globFiles(moduleInitPattern);
-  console.log(globby.sync('translations', { cwd, absolute: true }));
   const [localePath] = globDirs(translationsPattern);
 
   return {
